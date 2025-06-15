@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Ortiz;J.
+FN:J. Ortiz
+ORG:Cubiertas y más
+TITLE:Técnico en Cubiertas y Reparaciones
+TEL;TYPE=cell:+34 645059878
+EMAIL:j.ortiz@example.com
+URL:https://tudominio.com
+ADR;TYPE=work:;;ESPAÑA;MADRID;;;;
+NOTE:Servicios de cubiertas, pintura, albañilería y más.
+END:VCARD
