@@ -1,26 +1,22 @@
 {
-  "full_name": "J. Ortiz",
-  "company": "Cubiertas y más",
-  "title": "Técnico en Cubiertas y Reparaciones",
-  "phone": "+34 645059878",
-  "email": "j.ortiz@example.com",
-  "website": "https://tudominio.com",
-  "location": "España",
-  "logo": "LOGO.jpeg",
-  "services": [
-    "Instalación de cubiertas",
-    "Reparación de techos",
-    "Pintura y acabados",
-    "Albañilería",
-    "Trabajos con herramientas manuales"
-  ],
-  "social_links": {
-    "whatsapp": "https://wa.me/34645059878",
-    "facebook": "#",
-    "instagram": "#",
-    "website": "https://tudominio.com"
-  },
-  "vcard_file": "J_Ortiz.vcf",
-  "qr_code_url": "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tudominio.com/J_Ortiz.vcf",
-  "created_at": "2025-06-15"
+  "name": "Cubiertas y más - J. Ortiz",
+  "short_name": "Cubiertas y más",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#6b21a8",
+  "orientation": "portrait",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }
