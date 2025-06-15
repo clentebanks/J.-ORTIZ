@@ -1,6 +1,7 @@
 const CACHE_NAME = 'cubiertas-v2';
 const ASSETS = [
   '/',
+  '/index.html',
   '/offline.html',
   '/LOGO.jpeg',
   '/J_Ortiz.vcf',
@@ -15,15 +16,15 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(ASSETS);
-    })
+    }).catch(err => console.error('Error caching during install:', err))
   );
   self.skipWaiting();
 });
 
-// Activate: delete old caches
+// Activate: clean old caches
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((keys) =>
+    caches.keys().then((keys) => 
       Promise.all(
         keys.map((key) => {
           if (key !== CACHE_NAME) {
@@ -36,15 +37,21 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Fetch: respond from cache, fallback to network, or offline.html
+// Fetch: cache first, then network, fallback to offline.html if navigation fails
 self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request).then((cached) => {
-      return cached || fetch(event.request).catch(() => {
-        if (event.request.mode === 'navigate') {
-          return caches.match('/offline.html');
-        }
-      });
-    })
-  );
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          return response || caches.match('/offline.html');
+        })
+        .catch(() => caches.match('/offline.html'))
+    );
+  } else {
+    event.respondWith(
+      caches.match(event.request).then((cached) => {
+        return cached || fetch(event.request);
+      })
+    );
+  }
 });
